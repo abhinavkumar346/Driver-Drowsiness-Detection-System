@@ -91,7 +91,7 @@ Shows the green "LOCKED" bounding box, center crosshair, dx/dy offset, and EAR/M
 Shows the "EYES CLOSED" red label triggering when EAR drops below `0.21`. If sustained long enough, this is also where you'd capture the rolling PERCLOS % climbing and the "DROWSINESS ALERT" banner appearing.
 
 <!-- ![Eyes Closed Output](docs/screenshots/eyes_closed.png) -->
-`📸 Add screenshot here`
+![Image description](172505.png)
 
 ---
 
