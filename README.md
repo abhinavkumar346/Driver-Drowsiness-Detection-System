@@ -82,8 +82,8 @@ The system produces three distinct visual states depending on driver behavior. A
 ### 1. Face Detection / Lock (normal, alert state)
 Shows the green "LOCKED" bounding box, center crosshair, dx/dy offset, and EAR/MAR/PERCLOS readout with no alerts active.
 
-<!-- ![Face Detection Output](docs/screenshots/face_detection.png) -->
-`📸 Add screenshot here`
+<!-- ![Face Detection Output](docs/screenshots/A.png) -->
+![Image description](A.png)
 
 ---
 
