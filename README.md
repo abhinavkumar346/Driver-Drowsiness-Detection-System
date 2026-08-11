@@ -99,7 +99,7 @@ Shows the "EYES CLOSED" red label triggering when EAR drops below `0.21`. If sus
 Shows the "YAWNING" orange label triggering when MAR exceeds `0.6`, with the mouth landmark dots visibly spread around the open mouth.
 
 <!-- ![Yawning Output](docs/screenshots/yawning.png) -->
-`📸 Add screenshot here`
+![Image description](172518.png)
 
 ---
 
