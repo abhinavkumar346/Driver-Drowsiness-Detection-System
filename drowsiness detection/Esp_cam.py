@@ -1,0 +1,50 @@
+import cv2 as cv
+from collections import deque
+from model import detect_faces, get_locked_face, draw_lock, reset_detector
+from model import load_face_mesh, release_face_mesh, process_face_landmarks, crop_face
+from model.DisplayINFO import write_info
+from model.drowsiness_detector import display_info, update_perclos
+
+
+face_mesh = load_face_mesh()
+cap = cv.VideoCapture(f"http://10.101.14.96:81/stream")
+perclos_window = deque()
+
+while True:
+    success, frame = cap.read()
+    if not success:
+        print("Failed to read frame from camera.")
+        if cv.waitKey(100) & 0xFF == ord('q'):
+            break
+        continue
+    
+    boxes = detect_faces(frame)
+    locked_face = get_locked_face(boxes)
+    frame, dx, dy = draw_lock(frame, locked_face)
+
+    avg_ear, mar, eye_closed, yawning = None, None, False, False
+
+    if locked_face is not None:
+        x, y, w, h, cx, cy = locked_face
+        face_crop = crop_face(frame, (x, y, w, h))
+
+        if face_crop is not None:
+            crop_h, crop_w = face_crop.shape[:2]
+            results = face_mesh.process(cv.cvtColor(face_crop, cv.COLOR_BGR2RGB))
+            avg_ear, mar, eye_closed, yawning = process_face_landmarks(
+                results, crop_w, crop_h, x, y, frame
+            )
+
+    perclos = update_perclos(eye_closed, perclos_window)
+
+    write_info(frame, dy, dx, avg_ear, mar, perclos, eye_closed, yawning)
+
+    cv.imshow("Face Lock and Drowsiness Detection", frame)
+    if cv.waitKey(1) & 0xFF == ord('q'):
+        break
+
+
+reset_detector()
+release_face_mesh()
+cap.release()
+cv.destroyAllWindows()
