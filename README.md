@@ -251,7 +251,7 @@ flowchart LR
 <!-- ======================= IMAGE 2 OF 3: CIRCUIT DIAGRAM =======================
      Save your diagram as docs/images/circuit-diagram.png (or change the path below). -->
 <p align="center">
-  <img src="docs/images/circuit_diagram.png" alt="Saarthi circuit diagram" width="75%">
+  <img src="circuit_diagram.png" alt="Saarthi circuit diagram" width="75%">
   <br>
   <em>Figure 2 — Circuit diagram: Arduino, two servos, buzzer and ESP32-CAM. <strong>[Add image]</strong></em>
 </p>
@@ -632,22 +632,22 @@ $$
 \Delta\theta=
 \begin{cases}
 0 & \text{if } |d| \le d_{band}\\[4pt]
-\operatorname{clamp}\!\big(K_p\,\theta_{err},\,-S_{max},\,+S_{max}\big) & \text{if } |d| > d_{band}
+\mathrm{clamp}\!\big(K_p\,\theta_{err},\,-S_{max},\,+S_{max}\big) & \text{if } |d| > d_{band}
 \end{cases}
 $$
 
 $$
-\operatorname{clamp}(v,\ a,\ b)=\max\!\big(a,\ \min(b,\ v)\big)
+\mathrm{clamp}(v,\ a,\ b)=\max\!\big(a,\ \min(b,\ v)\big)
 $$
 
 The new servo angles are the old ones plus the (direction-corrected) step, **clamped to the mechanical range**:
 
 $$
-\mathrm{pan}_{k+1}=\operatorname{clamp}\!\big(\mathrm{pan}_k+D_{pan}\,\Delta\theta_x,\ 0^\circ,\ 180^\circ\big)
+\mathrm{pan}_{k+1}=\mathrm{clamp}\!\big(\mathrm{pan}_k+D_{pan}\,\Delta\theta_x,\ 0^\circ,\ 180^\circ\big)
 $$
 
 $$
-\mathrm{tilt}_{k+1}=\operatorname{clamp}\!\big(\mathrm{tilt}_k+D_{tilt}\,\Delta\theta_y,\ 40^\circ,\ 140^\circ\big)
+\mathrm{tilt}_{k+1}=\mathrm{clamp}\!\big(\mathrm{tilt}_k+D_{tilt}\,\Delta\theta_y,\ 40^\circ,\ 140^\circ\big)
 $$
 
 | Symbol | Code name | Default | Meaning |
@@ -740,12 +740,12 @@ EAR measures **how open an eye is** from six landmark points around it. When the
 ```
 
 $$
-\mathrm{EAR}=\frac{\lVert p_2-p_6\rVert+\lVert p_3-p_5\rVert}{2\,\lVert p_1-p_4\rVert}
+\mathrm{EAR}=\frac{\Vert p_2-p_6\Vert+\Vert p_3-p_5\Vert}{2\,\Vert p_1-p_4\Vert}
 $$
 
 - The numerator adds the **two vertical** eyelid distances.
 - The denominator is **twice the horizontal** eye width (twice, because the numerator contains two distances).
-- $\lVert a-b\rVert=\sqrt{(a_x-b_x)^2+(a_y-b_y)^2}$ is the Euclidean distance in **pixels**.
+- $\Vert a-b\Vert=\sqrt{(a_x-b_x)^2+(a_y-b_y)^2}$ is the Euclidean distance in **pixels**.
 
 **Landmark indices** (MediaPipe Face Mesh):
 
@@ -768,7 +768,7 @@ $$
 
 $$
 \mathrm{EAR}_{avg}=\frac{\mathrm{EAR}_{left}+\mathrm{EAR}_{right}}{2},\qquad
-\text{eye\_closed}=\big(\mathrm{EAR}_{avg}<0.21\big)
+\text{eyes closed}=\big(\mathrm{EAR}_{avg}<0.21\big)
 $$
 
 **Worked example** (from the unit test, 100 × 100 frame): eye width $10$ px, both vertical distances $4$ px:
@@ -805,7 +805,7 @@ If the eyelids close until each vertical distance is $1$ px: $\ \mathrm{EAR}=\df
 MAR is EAR's twin for the mouth. A wide-open mouth (a **yawn**) makes the vertical lip distances large compared with the mouth width, so MAR rises.
 
 $$
-\mathrm{MAR}=\frac{\lVert p_2-p_6\rVert+\lVert p_3-p_5\rVert}{2\,\lVert p_1-p_4\rVert},\qquad
+\mathrm{MAR}=\frac{\Vert p_2-p_6\Vert+\Vert p_3-p_5\Vert}{2\,\Vert p_1-p_4\Vert},\qquad
 \text{yawning}=\big(\mathrm{MAR}>0.6\big)
 $$
 
@@ -1011,7 +1011,7 @@ class DrowsinessAlert:
 The sketch smooths the motion again, independently of the Python side. Every `STEP_INTERVAL = 15 ms` each servo moves at most `STEP_SIZE = 1°` toward its target:
 
 $$
-v_{servo}=\frac{\text{STEP\_SIZE}}{\text{STEP\_INTERVAL}}=\frac{1^\circ}{15\ \text{ms}}\approx 66.7^\circ/\text{s}
+v_{servo}=\frac{\text{step size}}{\text{step interval}}=\frac{1^\circ}{15\ \text{ms}}\approx 66.7^\circ/\text{s}
 \qquad
 t_{move}=\Delta\theta\times 15\ \text{ms}
 $$
