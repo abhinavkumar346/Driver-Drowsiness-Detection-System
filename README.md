@@ -251,7 +251,7 @@ flowchart LR
 <!-- ======================= IMAGE 2 OF 3: CIRCUIT DIAGRAM =======================
      Save your diagram as docs/images/circuit-diagram.png (or change the path below). -->
 <p align="center">
-  <img src="docs/images/circuit-diagram.png" alt="Saarthi circuit diagram" width="75%">
+  <img src="docs/images/circuit_diagram.png" alt="Saarthi circuit diagram" width="75%">
   <br>
   <em>Figure 2 — Circuit diagram: Arduino, two servos, buzzer and ESP32-CAM. <strong>[Add image]</strong></em>
 </p>
