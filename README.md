@@ -684,8 +684,8 @@ $$
     MAX_STEP_DEG = 4.0           # biggest angle change per update. The sketch moves 1 degree every
                                  # 15 ms (about 66 deg/s), so 4 deg per 0.1 s update never outruns it.
                                  # Without this limit the target races ahead of the servo and overshoots.
-    PAN_DIR = -1                  # change to -1 if the mount pans the wrong way
-    TILT_DIR = -1                 # change to -1 if the mount tilts the wrong way
+    PAN_DIR = -1                  # change to 1 if the mount pans the wrong way
+    TILT_DIR = -1                 # change to 1 if the mount tilts the wrong way
     PAN_MIN, PAN_MAX = 0, 180    # same as the Arduino sketch
     TILT_MIN, TILT_MAX = 40, 140 # same as the Arduino sketch
 
