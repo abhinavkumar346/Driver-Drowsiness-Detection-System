@@ -44,7 +44,7 @@ Video can come from either an **ESP32-CAM** (wireless, over Wi-Fi) or a normal *
 <!-- ======================= IMAGE 1 OF 3: FINAL PRODUCT =======================
      Save your photo as docs/images/final-product.png (or change the path below). -->
 <p align="center">
-  <img src="docs/images/final-product.png" alt="Saarthi final product" width="70%">
+  <img src="epd.jpeg" alt="Saarthi final product" width="70%">
   <br>
   <em>Figure 1 — The finished Saarthi unit (camera on the pan-tilt mount with buzzer). <strong>[Add image]</strong></em>
 </p>
