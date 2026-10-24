@@ -279,10 +279,6 @@ EPD_project_5th_sem/
 ├── pan_tilt_serial/
 │   └── pan_tilt_serial.ino         # Arduino sketch: servos + buzzer over USB serial
 │
-├── tests/
-│   ├── test_logic.py               # Unit tests - no camera / Arduino needed
-│   └── test_esp32_cam connection.py# Quick check that the ESP32-CAM stream opens
-│
 ├── esp32_cam_firmware/             # (add this folder) ESP32-CAM sketch, e.g. main.cpp
 └── docs/images/                    # (add this folder) the three README images
 ```
